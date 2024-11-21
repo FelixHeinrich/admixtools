@@ -1114,6 +1114,7 @@ extract_f2 = function(pref, outdir, inds = NULL, pops = NULL, blgsize = 0.05, ma
     }
   }
 
+  pop1 = pops
   if(is.null(inds)) pops = union(pops, pops2)
   afdat = anygeno_to_aftable(pref, inds = inds, pops = pops, format = format,
                              adjust_pseudohaploid = adjust_pseudohaploid, verbose = verbose)
@@ -1128,7 +1129,7 @@ extract_f2 = function(pref, outdir, inds = NULL, pops = NULL, blgsize = 0.05, ma
 
   if(isTRUE(poly_only)) poly_only = c('f2', 'ap', 'fst')
   arrs = afs_to_f2_blocks(afdat, outdir = outdir, overwrite = overwrite, maxmem = maxmem, poly_only = poly_only,
-                          pops1 = pops, pops2 = pops2, outpop = if(outpop_scale) outpop else NULL,
+                          pops1 = pop1, pops2 = pops2, outpop = if(outpop_scale) outpop else NULL,
                           blgsize = blgsize, afprod = afprod, fst = fst, apply_corr = apply_corr,
                           n_cores = n_cores, verbose = verbose)
 
